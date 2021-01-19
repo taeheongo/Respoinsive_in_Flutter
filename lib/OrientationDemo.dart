@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class OrientationDemo extends StatefulWidget {
   @override
@@ -12,8 +13,11 @@ class _OrientationDemoState extends State<OrientationDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      // OrientationBuilder is a widget which builds a layout or part of a layout on an orientation change.
       body: OrientationBuilder(
         builder: (context, orientation) {
+          // The Builder function is called when the orientation changes.
+          // The possible values being Orientation.portrait or Orientation.landscape.
           return orientation == Orientation.portrait
               ? _buildVerticalLayout()
               : _buildHorizontalLayout();
@@ -23,6 +27,10 @@ class _OrientationDemoState extends State<OrientationDemo> {
   }
 
   Widget _buildVerticalLayout() {
+    // We can also check the orientation at any point in the
+    // code(inside or outside the OrientationBuilder) using.
+    print(MediaQuery.of(context).orientation);
+
     return Center(
       child: ListView(
         children: <Widget>[

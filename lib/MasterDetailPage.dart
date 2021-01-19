@@ -17,14 +17,26 @@ class _MasterDetailPageState extends State<MasterDetailPage> {
     return Scaffold(
       appBar: AppBar(),
       body: OrientationBuilder(builder: (context, orientation) {
-
         if (MediaQuery.of(context).size.width > 600) {
           isLargeScreen = true;
         } else {
           isLargeScreen = false;
         }
 
+        // If you want to have a design for tabls only, instead of checking for
+        // width from MediaQuery
+        // Size size = MediaQuery.of(context).size;
+        // double width = size.width > size.height ? size.height : size.width;
+
+        // if (width > 600) {
+        //   // Do something for tablets here
+        // } else {
+        //   // Do something for phones
+        // }
+
         return Row(children: <Widget>[
+          // We use the Expanded widgets around it to fill the screen or divde the screen
+          // in case of a larger screen.
           Expanded(
             child: ListWidget(10, (value) {
               if (isLargeScreen) {
@@ -39,7 +51,9 @@ class _MasterDetailPageState extends State<MasterDetailPage> {
               }
             }),
           ),
-          isLargeScreen ? Expanded(child: DetailWidget(selectedValue)) : Container(),
+          isLargeScreen
+              ? Expanded(child: DetailWidget(selectedValue))
+              : Container(),
         ]);
       }),
     );
